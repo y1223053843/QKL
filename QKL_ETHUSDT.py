@@ -30,6 +30,8 @@ doubleLowArray = num.asarray(lowArray, dtype='double')
 upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+print("LOWER===============" + str(lowArray[-1]))
+print("HIGHER==============" + str(highArray[-1]))
 print("BULL upperband======" +  str(upperband[-1]))
 print("BULL middleband=====" +  str(middleband[-1]))
 print("BULL lowerband======" +  str(lowerband[-1]))
