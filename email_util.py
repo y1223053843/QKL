@@ -19,7 +19,7 @@ from email import encoders
 
 #读取配置配置文件
 cf = configparser.ConfigParser()
-cf.read("./config/config.conf")
+cf.read("config.conf")
 
 '''
 ###############################################################################
@@ -63,7 +63,7 @@ title 邮件标题
 ###############################################################################
 '''
 def sendMail(content,title):
-    from_addr = cf["Email"] ["from3"]
+    from_addr = cf['Email'] ['from3']
     password = cf.get("Email", "password3")
     code3 = cf.get("Email", "code3")
     to_addr = cf.get("Email", "to")
