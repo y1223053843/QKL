@@ -16,10 +16,12 @@ import logging
 import time
 import configparser
 from email import encoders
+from os import path
 
 #读取配置配置文件
+config_file = path.join(path.dirname(__file__), 'config.conf')
 cf = configparser.ConfigParser()
-cf.read("config.conf")
+cf.read(config_file)
 
 '''
 ###############################################################################
