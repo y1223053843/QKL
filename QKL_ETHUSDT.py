@@ -10,7 +10,6 @@ gateio = ccxt.gateio()
 
 limit = 500
 current_time = int(time.time()//60*60*1000)
-print(current_time)
 
 since_time = current_time - limit * 4 * 60 * 60 * 1000
 
@@ -30,10 +29,12 @@ doubleLowArray = num.asarray(lowArray, dtype='double')
 
 upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
+print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 print("BULL upperband======" +  str(upperband[-1]))
 print("BULL middleband=====" +  str(middleband[-1]))
 print("BULL lowerband======" +  str(lowerband[-1]))
 
+sendMail("当前时间:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), "当前时间:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 if (lowArray[-1] <= lowerband[-1]):
     sendMail("【GATE.IO】【ETH/USDT】触发4小时布林线下沿", "【GATE.IO】【ETH/USDT】触发4小时布林线下沿")
 if (highArray[-1] >= upperband[-1]):
