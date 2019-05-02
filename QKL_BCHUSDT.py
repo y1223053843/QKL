@@ -11,9 +11,9 @@ gateio = ccxt.gateio()
 limit = 500
 current_time = int(time.time()//60*60*1000)
 
-since_time = current_time - limit * 4 * 60 * 60 * 1000
+since_time = current_time - limit * 15 * 60 * 1000
 
-data = gateio.fetch_ohlcv(symbol='ETH/USDT',timeframe='4h', limit=500,since=since_time)
+data = gateio.fetch_ohlcv(symbol='BCH/USDT',timeframe='15m', limit=500,since=since_time)
 df = pd.DataFrame(data)
 df = df.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
 df['open_time'] = pd.to_datetime(df['open_time'], unit='ms') + pd.Timedelta(hours=8)
@@ -36,9 +36,9 @@ print("BULL lowerband======" +  str(lowerband[-1]))
 
 #sendMail("当前时间:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()), "当前时间:" + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 if (lowArray[-1] <= lowerband[-1]):
-    sendMail("【GATE.IO】【ETH/USDT】触发4小时布林线下沿", "【GATE.IO】【ETH/USDT】触发4小时布林线下沿")
+    sendMail("【GATE.IO】【BCH/USDT】触发15分钟布林线下沿", "【GATE.IO】【BCH/USDT】触发15分钟布林线下沿")
 if (highArray[-1] >= upperband[-1]):
-    sendMail("【GATE.IO】【ETH/USDT】触发4小时布林线上沿", "【GATE.IO】【ETH/USDT】触发4小时布林线上沿")
+    sendMail("【GATE.IO】【BCH/USDT】触发15分钟布林线上沿", "【GATE.IO】【BCH/USDT】触发15分钟布林线上沿")
 
 
 
