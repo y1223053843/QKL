@@ -30,6 +30,10 @@ doubleLowArray = num.asarray(lowArray, dtype='double')
 
 upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
+print("BULL upperband======" +  str(upperband[-1]))
+print("BULL middleband=====" +  str(middleband[-1]))
+print("BULL lowerband======" +  str(lowerband[-1]))
+
 if (lowArray[-1] <= lowerband[-1]):
     sendMail("【GATE.IO】【ETH/USDT】触发4小时布林线下沿", "【GATE.IO】【ETH/USDT】触发4小时布林线下沿")
 if (highArray[-1] >= upperband[-1]):
