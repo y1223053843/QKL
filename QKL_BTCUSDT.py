@@ -15,7 +15,6 @@ def jisuan():
     since_time = current_time - limit * 15 * 60 * 1000
 
     data = gateio.fetch_ohlcv(symbol='BTC/USDT',timeframe='15m', limit=500,since=since_time)
-    print (data)
     df = pd.DataFrame(data)
     df = df.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
 
