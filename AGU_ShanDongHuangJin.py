@@ -31,7 +31,7 @@ print("BULL lowerband======" +  str(lowerband[-1]))
 if ((lowArray[-1] - lowerband[-1])/lowArray[-1] <= 0.01 ):
      sendMail("【山东黄金】触发60分钟布林线下沿,当前价格：" + str(closeArray[-1]), "【山东黄金】触发60分钟布林线下沿,当前价格：" + str(closeArray[-1]))
 if (highArray[-1] >= upperband[-1]):
-     sendMail("【山东黄金】触发60分钟布林线上沿,当前价格：" + str(closeArray[-1]), "【山东黄金】触发60分钟布林线下沿,当前价格：" + str(closeArray[-1]))
+     sendMail("【山东黄金】触发60分钟布林线上沿,当前价格：" + str(closeArray[-1]), "【山东黄金】触发60分钟布林线上沿,当前价格：" + str(closeArray[-1]))
 
 
 
