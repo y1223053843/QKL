@@ -37,6 +37,7 @@ print("BULL middleband=====" +  str(middleband[-1]))
 print("BULL lowerband======" +  str(lowerband[-1]))
 
 #sendMail("【TRX/USDT】触发5分钟布林线下沿,当前价格：" + str(closeArray[-1]), "【TRX/USDT】触发5分钟布林线下沿,当前价格：" + str(closeArray[-1]))
+
 if (lowArray[-1] <= lowerband[-1]):
     sendMail("TRX/USDT触4小时BL下沿：" + str(closeArray[-1]), "TRX/USDT触4小时BL下沿：" + str(closeArray[-1]))
 if (highArray[-1] >= upperband[-1]):
