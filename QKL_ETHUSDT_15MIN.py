@@ -38,9 +38,9 @@ print("BULL lowerband======" +  str(lowerband[-1]))
 
 #sendMail("【BCH/USDT】触发15分钟布林线下沿,当前价格：" + str(closeArray[-1]), "【BCH/USDT】触发15分钟布林线下沿,当前价格：" + str(closeArray[-1]))
 if (lowArray[-1] <= lowerband[-1]):
-    sendMail("【ETH/USDT】触发15分钟布林线下沿,当前价格：" + str(closeArray[-1]), "【ETH/USDT】触发15分钟布林线下沿,当前价格：" + str(closeArray[-1]))
+    sendMail("【ETH/USDT】触15分BL下沿：" + str(closeArray[-1]), "【ETH/USDT】触15分BL下沿：" + str(closeArray[-1]))
 if (highArray[-1] >= upperband[-1]):
-    sendMail("【ETH/USDT】触发15分钟布林线上沿,当前价格：" + str(closeArray[-1]), "【ETH/USDT】触发15分钟布林线上沿,当前价格：" + str(closeArray[-1]))
+    sendMail("【ETH/USDT】触15分BL上沿：" + str(closeArray[-1]), "【ETH/USDT】触15分BL上沿：" + str(closeArray[-1]))
 
 
 
