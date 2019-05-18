@@ -46,12 +46,12 @@ def strategy(name,zhouqi):
     doubleHighArray = num.asarray(highArray, dtype='double')
     doubleLowArray = num.asarray(lowArray, dtype='double')
 
-    upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
+    upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray*10000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
+    upperband = upperband/10000
+    middleband = middleband/10000
+    lowerband = lowerband/10000
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-    print(doubleCloseArray)
-    print(middleband)
-    print(lowerband)
     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
     print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
     print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
