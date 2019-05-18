@@ -49,11 +49,12 @@ def strategy(name,zhouqi):
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
     print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
     print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
-    print(zhouqi_ch + "BULL upperband======" +  str(upperband[-1]))
-    print(zhouqi_ch + "BULL middleband=====" +  str(middleband[-1]))
-    print(zhouqi_ch + "BULL lowerband======" +  str(lowerband[-1]))
+    print(zhouqi_ch + "BULL upperband======" + str(upperband[-1]))
+    print(zhouqi_ch + "BULL middleband=====" + str(middleband[-1]))
+    print(zhouqi_ch + "BULL lowerband======" + str(lowerband[-1]))
 
     if (lowArray[-1] <= lowerband[-1]):
         a = 1
