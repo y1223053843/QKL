@@ -50,6 +50,8 @@ def strategy(name,zhouqi):
 
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     print(doubleCloseArray)
+    print(middleband)
+    print(lowerband)
     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
     print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
     print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
