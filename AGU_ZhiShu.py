@@ -50,6 +50,7 @@ def strategy(code, name, zhouqi):
           a = 1
           sendMail(name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]))
 
-strategy("600547", "山东黄金", "30")
-strategy("600547", "山东黄金", "60")
-strategy("600547", "山东黄金", "D")
+
+strategy("399006", "创业板指", "30")
+strategy("399006", "创业板指", "60")
+strategy("399006", "创业板指", "D")
