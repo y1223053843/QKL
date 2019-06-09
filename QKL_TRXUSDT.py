@@ -9,9 +9,7 @@ from email_util import *
 a = 0
 
 def strategy(name,zhouqi):
-    global a
-    if (a == 1):
-        return
+
     gateio = ccxt.gateio()
     limit = 500
     current_time = int(time.time()//60*60*1000)
@@ -46,11 +44,19 @@ def strategy(name,zhouqi):
     doubleHighArray = num.asarray(highArray, dtype='double')
     doubleLowArray = num.asarray(lowArray, dtype='double')
 
+    # 布林线
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
     upperband = upperband / 1000
     middleband = middleband / 1000
     lowerband = lowerband / 1000
+
+    # macd 为快线 macdsignal为慢线，macdhist为柱体
+    macd, macdsignal, macdhist = ta.MACD(num.asarray(doubleCloseArray*1000, dtype='double'), fastperiod=12, slowperiod=26,
+                                         signalperiod=9)
+    macd = macd / 1000
+    macdsignal = macdsignal / 1000
+    macdhist = macdhist / 1000
 
     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
@@ -60,12 +66,24 @@ def strategy(name,zhouqi):
     print(zhouqi_ch + "BULL middleband=====" + str(middleband[-1]))
     print(zhouqi_ch + "BULL lowerband======" + str(lowerband[-1]))
 
+    print(zhouqi_ch + "MACD 快线===========" + str(macd[-1]))
+    print(zhouqi_ch + "MACD 慢线===========" + str(macdsignal[-1]))
+    print(zhouqi_ch + "MACD 柱体===========" + str(macdhist[-1]))
+
+    name_jian = name[0:3]
+    if (zhouqi == '1h'):
+        if (macdsignal[-1] < 0 and (macdhist[-3] < macdhist[-2] and macdhist[-1] < macdhist[-2])):
+            sendMail(name_jian + "触" + zhouqi_ch + "MACD下趋：" + str(closeArray[-1]),name_jian + "触" + zhouqi_ch + "MACD下趋：" + str(closeArray[-1]))
+
+    global a
+    if (a == 1):
+        return
     if (lowArray[-1] <= lowerband[-1]):
         a = 1
-        sendMail(name + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]))
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]))
     if (highArray[-1] >= upperband[-1]):
         a = 1
-        sendMail(name + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]))
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]))
 
 strategy("TRX/USDT","15m")
 strategy("TRX/USDT","1h")
