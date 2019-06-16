@@ -44,7 +44,7 @@ def strategy(code, name, zhouqi):
      print(zhouqi_ch + "BULL lowerband======" +  str(lowerband[-1]))
 
      if (zhouqi == '60'):
-          if (fastd[-1] < 5):
+          if (fastd[-1] < 0):
                sendMail(name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
                     -2] + "_" + "%.2f" % fastd[-1],
                         name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
@@ -55,16 +55,8 @@ def strategy(code, name, zhouqi):
                         name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
                              -2] + "_" + "%.2f" % fastd[-1])
 
-     # global a
-     # if (a == 1):
-     #      return
-     #
-     # if ((lowArray[-1] - lowerband[-1])/lowArray[-1] <= 0.01 ):
-     #      a = 1
-     #      sendMail(name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]))
-     # if (highArray[-1] >= upperband[-1]):
-     #      a = 1
-     #      sendMail(name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]))
-
 strategy("600547", "山东黄金", "60")
-strategy("600547", "山东黄金", "D")
+strategy("002415", "海康威视", "60")
+strategy("600570", "恒生电子", "60")
+strategy("000063", "中兴通讯", "60")
+strategy("300059", "东方财富", "60")
