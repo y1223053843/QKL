@@ -79,12 +79,12 @@ def strategy(name,zhouqi):
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
-        if (fastd[-1] < 20 ):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI上升：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI上升：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+        if (fastd[-1] < 3 ):
+            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
         if (fastd[-1] > 97):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI下降：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI下降：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
 
     global a
     if (a == 1):
