@@ -61,7 +61,6 @@ def strategy(name,zhouqi):
     macdhist = macdhist / 1000
 
     fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray, dtype='double'), timeperiod=14, fastk_period=14, fastd_period=3, fastd_matype=3)
-    print(fastd)
     if (zhouqi == '1h'):
         global fastd_1h
         fastd_1h = fastd
@@ -81,11 +80,11 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 3 ):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + "RSI_1h:" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + "RSI_1h:" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
         if (fastd[-1] > 97):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + "RSI_1h:" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + "RSI_1h:" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
 
     global a
     if (a == 1):
