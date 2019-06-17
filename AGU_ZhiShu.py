@@ -33,15 +33,16 @@ def strategy(code, name, zhouqi):
      upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
      fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray, dtype='double'), timeperiod=14, fastk_period=14, fastd_period=3, fastd_matype=3)
-     #print(fastd)
+     print(fastd)
 
-     print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+     print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
      print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
      print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
      print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
      print(zhouqi_ch + "BULL upperband======" +  str(upperband[-1]))
      print(zhouqi_ch + "BULL middleband=====" +  str(middleband[-1]))
      print(zhouqi_ch + "BULL lowerband======" +  str(lowerband[-1]))
+     print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_" + "%.2f" % fastd[-4] + "_" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
      if (zhouqi == '60'):
           if (fastd[-1] < 0):

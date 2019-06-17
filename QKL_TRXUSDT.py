@@ -65,7 +65,7 @@ def strategy(name,zhouqi):
         global fastd_1h
         fastd_1h = fastd
 
-    print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+    print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
     print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
     print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
@@ -76,6 +76,7 @@ def strategy(name,zhouqi):
     print(zhouqi_ch + "MACD 快线===========" + str(macd[-1]))
     print(zhouqi_ch + "MACD 慢线===========" + str(macdsignal[-1]))
     print(zhouqi_ch + "MACD 柱体===========" + str(macdhist[-1]))
+    print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_" + "%.2f" % fastd[-4] + "_" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
