@@ -44,28 +44,25 @@ def strategy(code, name, zhouqi):
      print(zhouqi_ch + "BULL lowerband======" +  str(lowerband[-1]))
 
      if (zhouqi == '60'):
-          if (fastd[-1] < 3):
-               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
-                    -2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
-                             -2] + "_" + "%.2f" % fastd[-1])
-          if (fastd[-1] > 97):
-               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
-                    -2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[
-                             -2] + "_" + "%.2f" % fastd[-1])
+          if (fastd[-1] < 0):
+               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                        name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+          if (fastd[-1] > 90):
+               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                        name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
-     global a
-     if (a == 1):
-          return
-
-     if ((lowArray[-1] - lowerband[-1])/lowArray[-1] <= 0.01 ):
-          a = 1
-          sendMail(name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]))
-     if (highArray[-1] >= upperband[-1]):
-          a = 1
-          sendMail(name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]))
+     #
+     # global a
+     # if (a == 1):
+     #      return
+     #
+     # if ((lowArray[-1] - lowerband[-1])/lowArray[-1] <= 0.01 ):
+     #      a = 1
+     #      sendMail(name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]))
+     # if (highArray[-1] >= upperband[-1]):
+     #      a = 1
+     #      sendMail(name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]))
 
 
 strategy("399006", "创业板指", "60")
-strategy("399006", "创业板指", "D")
+# strategy("399006", "创业板指", "D")
