@@ -45,10 +45,10 @@ def strategy(code, name, zhouqi):
      print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_"+ "%.2f" % fastd[-4] + "_"+ "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
      if (zhouqi == '60'):
-          if (fastd[-1] < 0):
+          if (fastd[-1] < 10):
                sendMail(name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
                         name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
-          if (fastd[-1] > 90):
+          if (fastd[-1] > 80):
                sendMail(name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
                         name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 

@@ -80,10 +80,10 @@ def strategy(name,zhouqi):
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
-        if (fastd[-1] < 3 ):
+        if (fastd[-1] < 10 ):
             sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
                      name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
-        if (fastd[-1] > 97):
+        if (fastd[-1] > 90):
             sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
                      name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
 
