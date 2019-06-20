@@ -11,9 +11,9 @@ a = 0
 def strategy(code, name, zhouqi):
 
      if (zhouqi == '30'):
-          zhouqi_ch = "30分钟"
+          zhouqi_ch = "30分"
      if (zhouqi == '60'):
-          zhouqi_ch = "60分钟"
+          zhouqi_ch = "1h"
      if (zhouqi == 'D'):
           zhouqi_ch = "1天"
      if (zhouqi == 'W'):
@@ -46,11 +46,11 @@ def strategy(code, name, zhouqi):
 
      if (zhouqi == '60'):
           if (fastd[-1] < 10):
-               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+               sendMail(name + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                        name + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
           if (fastd[-1] > 80):
-               sendMail(name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+               sendMail(name + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                        name + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
 strategy("600547", "山东黄金", "60")
 strategy("002415", "海康威视", "60")
