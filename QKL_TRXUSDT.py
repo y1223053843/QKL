@@ -21,15 +21,15 @@ def strategy(name,zhouqi):
     if (zhouqi == '1h'):
         since_time = current_time - limit * 1* 60 * 60 * 1000
         data = gateio.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
-        zhouqi_ch = "1小时"
+        zhouqi_ch = "1h"
     if (zhouqi == '2h'):
         since_time = current_time - limit * 2 * 60 * 60 * 1000
         data = gateio.fetch_ohlcv(symbol=name, timeframe='2h', limit=500, since=since_time)
-        zhouqi_ch = "2小时"
+        zhouqi_ch = "2h"
     if (zhouqi == '4h'):
         since_time = current_time - limit * 4*  60 * 60 * 1000
         data = gateio.fetch_ohlcv(symbol=name, timeframe='4h', limit=500, since=since_time)
-        zhouqi_ch = "4小时"
+        zhouqi_ch = "4h"
 
     df = pd.DataFrame(data)
     df = df.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
@@ -80,12 +80,12 @@ def strategy(name,zhouqi):
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
-        if (fastd[-1] < 10 ):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI底部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+        if (fastd[-1] < 10):
+            sendMail(name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
         if (fastd[-1] > 90):
-            sendMail(name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "STOTCHRSI顶部：" + str(closeArray[-1])  + " RSI_1h:" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" +  "%.2f" % fastd[-1])
+            sendMail(name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
+                     name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
     global a
     if (a == 1):
@@ -93,10 +93,10 @@ def strategy(name,zhouqi):
 
     if (lowArray[-1] <= lowerband[-1]):
         a = 1
-        sendMail(name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd_1h[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd_1h[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
     if (highArray[-1] >= upperband[-1]):
         a = 1
-        sendMail(name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]) + " RSI_1h:" + "%.2f" % fastd_1h[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd_1h[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
 
 #strategy("TRX/USDT","15m")
 strategy("TRX/USDT","1h")
