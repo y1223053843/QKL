@@ -92,10 +92,10 @@ def strategy(name,zhouqi):
 
     if (lowArray[-1] <= lowerband[-1]):
         a = 1
-        sendMail(name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL下沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
     if (highArray[-1] >= upperband[-1]):
         a = 1
-        sendMail(name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
+        sendMail(name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]), name_jian + "触"+ zhouqi_ch +"BL上沿：" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd_1h[-2] + "_" +  "%.2f" % fastd_1h[-1])
 
 strategy("BTC/USDT","1h")
 strategy("BTC/USDT","2h")
