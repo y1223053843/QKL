@@ -100,11 +100,6 @@ def strategy(name,zhouqi):
 
 #strategy("TRX/USDT","15m")
 strategy("TRX/USDT","1h")
-strategy("BTT/USDT","1h")
+#strategy("BTT/USDT","1h")
 # strategy("TRX/USDT","2h")
 # strategy("TRX/USDT","4h")
-
-
-
-
-
