@@ -11,6 +11,7 @@ a = 0
 def strategy(name,zhouqi):
 
     gateio = ccxt.gateio()
+    huobi = ccxt.huobipro()
     limit = 500
     current_time = int(time.time()//60*60*1000)
 
@@ -20,7 +21,11 @@ def strategy(name,zhouqi):
         zhouqi_ch = "15分钟"
     if (zhouqi == '1h'):
         since_time = current_time - limit * 1* 60 * 60 * 1000
-        data = gateio.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
+        data = huobi.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
+
+        since_time_30 = current_time - limit * 1* 30 * 60 * 1000
+        data_30 = huobi.fetch_ohlcv(symbol=name, timeframe='30m', limit=500, since=since_time)
+
         zhouqi_ch = "1h"
     if (zhouqi == '2h'):
         since_time = current_time - limit * 2 * 60 * 60 * 1000
@@ -46,6 +51,14 @@ def strategy(name,zhouqi):
     doubleLowArray = num.asarray(lowArray, dtype='double')
     doubleOpenArray = num.asarray(openArray, dtype='double')
 
+    df_30 = pd.DataFrame(data_30)
+    df_30 = df_30.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
+    df_30['open_time'] = pd.to_datetime(df_30['open_time'], unit='ms') + pd.Timedelta(hours=8)
+
+    # 02、 数据格式处理、并计算布林线值
+    closeArray_30 = num.array(df_30['close'])
+    doubleCloseArray_30 = num.asarray(closeArray_30, dtype='double')
+
     # 布林线
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
 
@@ -54,16 +67,28 @@ def strategy(name,zhouqi):
     lowerband = lowerband / 1000
 
     # macd 为快线 macdsignal为慢线，macdhist为柱体
-    macd, macdsignal, macdhist = ta.MACD(num.asarray(doubleCloseArray*1000, dtype='double'), fastperiod=12, slowperiod=26,
-                                         signalperiod=9)
-    macd = macd / 1000
-    macdsignal = macdsignal / 1000
-    macdhist = macdhist / 1000
+    # macd, macdsignal, macdhist = ta.MACD(num.asarray(doubleCloseArray_30*1000, dtype='double'), fastperiod=12, slowperiod=26,
+    #                                      signalperiod=9)
+    # macd = macd / 1000
+    # macdsignal = macdsignal / 1000
+    # macdhist = macdhist / 1000
+    # # print(doubleCloseArray)
+    # # print(doubleCloseArray_30)
+    # # print(macdhist)
+    # str1 = ""
+    # if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
+    #     str1 = "底部转折"
+    # if (macdhist[-1] < macdhist[-2] and macdhist[-3] < macdhist[-2]):
+    #     str1 = "顶部转折"
 
     fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray, dtype='double'), timeperiod=14, fastk_period=14, fastd_period=3, fastd_matype=3)
     if (zhouqi == '1h'):
         global fastd_1h
         fastd_1h = fastd
+
+    fastk_30, fastd_30 = ta.STOCHRSI(num.asarray(doubleCloseArray_30, dtype='double'), timeperiod=14, fastk_period=14,
+                               fastd_period=3, fastd_matype=3)
+
 
     print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
@@ -73,19 +98,19 @@ def strategy(name,zhouqi):
     print(zhouqi_ch + "BULL middleband=====" + str(middleband[-1]))
     print(zhouqi_ch + "BULL lowerband======" + str(lowerband[-1]))
 
-    print(zhouqi_ch + "MACD 快线===========" + str(macd[-1]))
-    print(zhouqi_ch + "MACD 慢线===========" + str(macdsignal[-1]))
-    print(zhouqi_ch + "MACD 柱体===========" + str(macdhist[-1]))
+    # print(zhouqi_ch + "MACD 快线===========" + str(macd[-1]))
+    # print(zhouqi_ch + "MACD 慢线===========" + str(macdsignal[-1]))
+    # print(zhouqi_ch + "MACD 柱体===========" + str(macdhist[-1]))
     print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_" + "%.2f" % fastd[-4] + "_" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail(name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] ,
+                     "看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1])
         if (fastd[-1] > 50):
-            sendMail(name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                     name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] ,
+                     "看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] )
 
     # global a
     # if (a == 1):
