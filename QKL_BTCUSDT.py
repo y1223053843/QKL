@@ -24,6 +24,7 @@ def strategy(name,zhouqi):
         data = gateio.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
 
         since_time_30 = current_time - limit * 1* 30 * 60 * 1000
+        time.sleep(5)
         data_30 = huobi.fetch_ohlcv(symbol=name, timeframe='30m', limit=500, since=since_time)
 
         zhouqi_ch = "1h"
