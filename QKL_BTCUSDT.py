@@ -21,7 +21,7 @@ def strategy(name,zhouqi):
         zhouqi_ch = "15分钟"
     if (zhouqi == '1h'):
         since_time = current_time - limit * 1* 60 * 60 * 1000
-        data = huobi.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
+        data = gateio.fetch_ohlcv(symbol=name, timeframe='1h', limit=500, since=since_time)
 
         since_time_30 = current_time - limit * 1* 30 * 60 * 1000
         data_30 = huobi.fetch_ohlcv(symbol=name, timeframe='30m', limit=500, since=since_time)
@@ -106,11 +106,11 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] ,
-                     "看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1])
+            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
+                     "看想止" + name_jian + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1])
         if (fastd[-1] > 50):
-            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] ,
-                     "看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1] + " 30分:" + "%.2f" % fastd_30[-3] + "_" + "%.2f" % fastd_30[-2] + "_" + "%.2f" % fastd_30[-1] )
+            sendMail("看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
+                     "看想止" + name_jian + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] )
 
     # global a
     # if (a == 1):
