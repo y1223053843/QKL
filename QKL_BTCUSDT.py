@@ -74,7 +74,6 @@ def strategy(name,zhouqi):
     # macdhist = macdhist / 1000
     # # print(doubleCloseArray)
     # # print(doubleCloseArray_30)
-    # # print(macdhist)
     # str1 = ""
     # if (macdhist[-1] > macdhist[-2] and macdhist[-3] > macdhist[-2]):
     #     str1 = "底部转折"
