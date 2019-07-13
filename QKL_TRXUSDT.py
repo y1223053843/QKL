@@ -105,11 +105,11 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail("看想止" + name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
-                     "看想止" + name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1])
+            sendMail(name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
+                     name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1])
         if (fastd[-1] > 50):
-            sendMail("看想止" + name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
-                     "看想止" + name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] )
+            sendMail(name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] ,
+                     name_jian + "" + zhouqi_ch + ":" + str(closeArray[-1]) + " " + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "_" + "%.1f" % fastd_30[-2] + "_" + "%.1f" % fastd_30[-1] )
 
     # global a
     # if (a == 1):
