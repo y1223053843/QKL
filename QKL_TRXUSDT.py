@@ -112,17 +112,17 @@ def strategy(name,zhouqi):
     # print(zhouqi_ch + "MACD 柱体===========" + str(macdhist[-1]))
     print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_" + "%.2f" % fastd[-4] + "_" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
-    strMA = " MA15:" + "%.6f" % macdhist[-2] + "/" + "%.6f" % macdhist[-1]
+    strMA = " MA15:" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
     # print(macdsignal)
     # print(macdhist)
     if (macdsignal[-1] > 0 and macdhist[-2] < macdhist[-1]):
-        strMA = " MA15主买进:" + "%.6f" % macdhist[-2] + "/" + "%.6f" % macdhist[-1]
+        strMA = " MA15主买进:" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
         if (macdsignal[-2] < 0 and macdsignal[-1] > 0):
-            strMA = " MA15负正转折（多）:" + "%.6f" % macdhist[-2] + "/" + "%.6f" % macdhist[-1]
+            strMA = " MA15负正转折（多）:" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
     if (macdsignal[-1] < 0 and macdhist[-2] > macdhist[-1]):
-        strMA = " MA15主卖出:" + "%.6f" % macdhist[-2] + "/" + "%.6f" % macdhist[-1]
+        strMA = " MA15主卖出:" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
         if (macdsignal[-2] > 0 and macdsignal[-1] < 0):
-            strMA = " MA15正负转折（空）:" + "%.6f" % macdhist[-2] + "/" + "%.6f" % macdhist[-1]
+            strMA = " MA15正负转折（空）:" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
