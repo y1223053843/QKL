@@ -128,7 +128,7 @@ def strategy(name,zhouqi):
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
             sendMail(name_jian + "%.5f" % closeArray[-1] + " " + zhouqi_ch + ":" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + strMA,
-                     name_jian + "%.5f" % closeArray[-1] + " " + zhouqi_ch + ":" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1])+ strMA
+                     name_jian + "%.5f" % closeArray[-1] + " " + zhouqi_ch + ":" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + strMA)
         if (fastd[-1] > 50):
             sendMail(name_jian + "%.5f" % closeArray[-1] + " " + zhouqi_ch + ":" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + strMA,
                      name_jian + "%.5f" % closeArray[-1] + " " + zhouqi_ch + ":" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30分:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + strMA)
