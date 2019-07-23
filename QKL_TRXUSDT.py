@@ -247,8 +247,7 @@ def strategy(name,zhouqi):
                 str4h = "降3 "
 
 
-    strQuShi = "势4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15 + "5" + str5
-
+    strQuShi = "势5" + str5 + "4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15
 
     ############################################ 30小时STOCHRSI#############################################
     fastk_30, fastd_30 = ta.STOCHRSI(num.asarray(doubleCloseArray_30, dtype='double'), timeperiod=14, fastk_period=14,
@@ -330,11 +329,11 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail(name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
         if (fastd[-1] > 50):
-            sendMail(name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
 
 strategy("TRX/USDT","1h")

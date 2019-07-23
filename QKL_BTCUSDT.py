@@ -246,8 +246,7 @@ def strategy(name,zhouqi):
             if ((SMA30_4h[-3] < SMA30_4h[-4])):
                 str4h = "降3 "
 
-
-    strQuShi = "势4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15 + "5" + str5
+    strQuShi = "势5" + str5 + "4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15
 
 
     ############################################ 30小时STOCHRSI#############################################
