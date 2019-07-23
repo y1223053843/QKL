@@ -49,6 +49,11 @@ def strategy(name,zhouqi):
         data_15 = huobi.fetch_ohlcv(symbol=name, timeframe='15m', limit=500, since=since_time_15)
         time.sleep(2)
 
+        ##############获取05分钟数据#############################################################################
+        since_time_5 = current_time - limit * 1 * 5 * 60 * 1000
+        data_5 = huobi.fetch_ohlcv(symbol=name, timeframe='5m', limit=500, since=since_time_5)
+        time.sleep(2)
+
         ##############获取04小时数据#############################################################################
         since_time_4h = current_time - limit * 4 * 60 * 60 * 1000
         data_4h = gateio.fetch_ohlcv(symbol=name, timeframe='4h', limit=500, since=since_time_4h)
@@ -100,6 +105,13 @@ def strategy(name,zhouqi):
     closeArray_15 = num.array(df_15['close'])
     doubleCloseArray_15 = num.asarray(closeArray_15, dtype='double')
 
+    ############################################ 05分钟数据处理############################################
+    df_5 = pd.DataFrame(data_5)
+    df_5 = df_5.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
+    df_5['open_time'] = pd.to_datetime(df_5['open_time'], unit='ms') + pd.Timedelta(hours=8)
+    closeArray_5 = num.array(df_5['close'])
+    doubleCloseArray_5 = num.asarray(closeArray_5, dtype='double')
+
     ############################################ 30分钟数据处理############################################
     df_30 = pd.DataFrame(data_30)
     df_30 = df_30.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
@@ -135,24 +147,44 @@ def strategy(name,zhouqi):
     #####                                                                                             #####
     #####                                                                                             #####
     #######################################################################################################
+    ############################################ 05分钟均线趋势#############################################
+    SMA30_5 = ta.SMA(doubleCloseArray_5, timeperiod=30)
+    # print("#####################################################################################15")
+    print(SMA30_5)
+    str5 = ""
+    if (SMA30_5[-1] > SMA30_5[-2]):
+        str5 = "升1 "
+        if ((SMA30_5[-2] > SMA30_5[-3])):
+            str5 = "升2 "
+            if ((SMA30_5[-3] > SMA30_5[-4])):
+                str5 = "升3 "
+
+    if (SMA30_5[-1] < SMA30_5[-2]):
+        str5 = "降1 "
+        if ((SMA30_5[-2] < SMA30_5[-3])):
+            str5 = "降2 "
+            if ((SMA30_5[-3] < SMA30_5[-4])):
+                str5 = "降3 "
+
+
     ############################################ 15分钟均线趋势#############################################
     SMA30_15 = ta.SMA(doubleCloseArray_15, timeperiod=30)
     #print("#####################################################################################15")
     #print(SMA30_15)
     str15 = ""
     if (SMA30_15[-1]>SMA30_15[-2]):
-        str15 = "升1"
+        str15 = "升1 "
         if((SMA30_15[-2]>SMA30_15[-3])):
-            str15 = "升2"
+            str15 = "升2 "
             if ((SMA30_15[-3] > SMA30_15[-4])):
-                str15 = "升3"
+                str15 = "升3 "
 
     if (SMA30_15[-1] < SMA30_15[-2]):
-        str15 = "降1"
+        str15 = "降1 "
         if ((SMA30_15[-2] < SMA30_15[-3])):
-            str15 = "降2"
+            str15 = "降2 "
             if ((SMA30_15[-3] < SMA30_15[-4])):
-                str15 = "降3"
+                str15 = "降3 "
 
 
 
@@ -215,7 +247,7 @@ def strategy(name,zhouqi):
                 str4h = "降3 "
 
 
-    strQuShi = "势4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15 + " "
+    strQuShi = "势4H" + str4h + "1H" + str1h + "30" + str30 + "15" + str15 + "5" + str5
 
 
     ############################################ 30小时STOCHRSI#############################################
@@ -229,7 +261,7 @@ def strategy(name,zhouqi):
 
     # strRSI = " 周期1H:" + "%.1f" % fastd[-3] + "/" + "%.1f" % fastd[-2] + "/" + "%.1f" % fastd[-1] + " 30M:" + "%.1f" % \
     #          fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + " "
-    strRSI = " 周30M:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + " "
+    strRSI = " 周30:" + "%.1f" % fastd_30[-3] + "/" + "%.1f" % fastd_30[-2] + "/" + "%.1f" % fastd_30[-1] + " "
 
 
     ############################################ 15分钟MACD    #############################################
@@ -242,18 +274,7 @@ def strategy(name,zhouqi):
     macdsignal = macdsignal / 1000
     macdhist = macdhist / 1000
 
-    strMA = " MA:" + "%.1f" % macdsignal[-1] + "_" + "%.1f" % macdhist[-3] + "/" + "%.1f" % macdhist[
-        -2] + "/" + "%.1f" % macdhist[-1]
-    # print(macdsignal)
-    # print(macdhist)
-    if (macdsignal[-1] > 0 and macdhist[-2] < macdhist[-1]):
-        strMA = " MA主多:" + "%.1f" % macdsignal[-1] + "_" + "%.1f" % macdhist[-3] + "/" + "%.1f" % macdhist[-2] + "/" + "%.1f" % macdhist[-1]
-        if (macdsignal[-2] < 0 and macdsignal[-1] > 0):
-            strMA = " MA负正转（多）:" + "%.1f" % macdsignal[-1] + "" + "%.1f" % macdhist[-3] + "/" + "%.1f" % macdhist[-2] + "/" + "%.1f" % macdhist[-1]
-    if (macdsignal[-1] < 0 and macdhist[-2] > macdhist[-1]):
-        strMA = " MA主空:" + "%.1f" % macdsignal[-1] + "_" + "%.1f" % macdhist[-3] + "/" + "%.1f" % macdhist[-2] + "/" + "%.1f" % macdhist[-1]
-        if (macdsignal[-2] > 0 and macdsignal[-1] < 0):
-            strMA = " MA正负转（空）:" + "%.1f" % macdsignal[-1] + "_" + "%.1f" % macdhist[-3] + "/" + "%.1f" % macdhist[-2] + "/" + "%.1f" % macdhist[-1]
+    strMA = " M15:" + "%.1f" % (macdsignal[-3]/10) + "/" + "%.1f" % (macdsignal[-2]/10) + "/" + "%.1f" % (macdsignal[-1]/10)
 
     ############################################ 1小时布林线    ###############################################
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
@@ -309,11 +330,11 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail(name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA)
         if (fastd[-1] > 50):
-            sendMail(name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.4f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
 
 strategy("BTC/USDT","1h")
