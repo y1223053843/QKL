@@ -118,11 +118,11 @@ def strategy(name,zhouqi):
     if (macdsignal[-1] > 0 and macdhist[-2] < macdhist[-1]):
         strMA = " MA主多:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
         if (macdsignal[-2] < 0 and macdsignal[-1] > 0):
-            strMA = " MA负正转（多）:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
+            strMA = " MA负正多:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
     if (macdsignal[-1] < 0 and macdhist[-2] > macdhist[-1]):
         strMA = " MA主空:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
         if (macdsignal[-2] > 0 and macdsignal[-1] < 0):
-            strMA = " MA正负转（空）:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
+            strMA = " MA正负空:" + "%.1f" % (macdsignal[-1]*1000000) + "_" + "%.1f" % (macdhist[-3]*1000000) + "/" + "%.1f" % (macdhist[-2]*1000000) + "/" + "%.1f" % (macdhist[-1]*1000000)
 
     name_jian = name[0:3]
     if (zhouqi == '1h'):
