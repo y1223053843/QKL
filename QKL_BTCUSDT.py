@@ -335,5 +335,5 @@ def strategy(name,zhouqi):
             sendMail(name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA,
                      name_jian + "%.1f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
-
+time.sleep(120)
 strategy("BTC/USDT","1h")
