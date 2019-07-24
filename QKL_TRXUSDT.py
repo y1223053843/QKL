@@ -335,5 +335,4 @@ def strategy(name,zhouqi):
             sendMail(name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA,
                      name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
-time.sleep(60)
 strategy("EOS/USDT","1h")
