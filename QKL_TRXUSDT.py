@@ -273,7 +273,7 @@ def strategy(name,zhouqi):
     macdsignal = macdsignal / 1000
     macdhist = macdhist / 1000
 
-    strMA = " M15:" + "%.1f" % (macdsignal[-3]*10000) + "/" + "%.1f" % (macdsignal[-2]*10000) + "/" + "%.1f" % (macdsignal[-1]*10000)
+    strMA = " M15:" + "%.1f" % (macdsignal[-3]*100) + "/" + "%.1f" % (macdsignal[-2]*100) + "/" + "%.1f" % (macdsignal[-1]*100)
 
     ############################################ 1小时布林线    ###############################################
     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
@@ -329,10 +329,10 @@ def strategy(name,zhouqi):
     name_jian = name[0:3]
     if (zhouqi == '1h'):
         if (fastd[-1] < 50):
-            sendMail(name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA)
         if (fastd[-1] > 50):
-            sendMail(name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA,
-                     name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
+            sendMail(name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA,
+                     name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
 strategy("EOS/USDT","1h")
