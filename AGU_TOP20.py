@@ -58,7 +58,7 @@ def execute_shanghai_1(days):
     jsonDic1 = sorted(jsonDic.items(),key=lambda x:x[1])
     return jsonDic1
 
-print("===========================05天：")
+# print("===========================05天：")
 # print (execute_shenzhen_1(5))
 # print("===========================10天：")
 # print(execute_shenzhen_1(10))
@@ -68,32 +68,33 @@ print("===========================05天：")
 # time.sleep(60)
 # print(execute_shenzhen_1(60))
 
-print("===========================05天：")
+print("===========================01天：")
 content00 = "===========================深圳01天：<br></br>" + str(execute_shenzhen_1(1)) + "<br></br>"
+print("===========================02天：")
 content0 = "===========================深圳02天：<br></br>" + str(execute_shenzhen_1(2)) + "<br></br>"
+print("===========================05天：")
 content1 = "===========================深圳05天：<br></br>" + str(execute_shenzhen_1(5)) + "<br></br>"
+print("===========================10天：")
 content2 = "===========================深圳10天：<br></br>" + str(execute_shenzhen_1(10))+ "<br></br>"
-time.sleep(60)
+time.sleep(30)
+print("===========================20天：")
 content3 = "===========================深圳20天：<br></br>" + str(execute_shenzhen_1(20))+ "<br></br>"
 time.sleep(60)
-print("===========================05天：")
-content4 = "===========================深圳30天：<br></br>" + str(execute_shenzhen_1(30))+ "<br></br>"
-time.sleep(60)
+print("===========================60天：")
 content5 = "===========================深圳60天：<br></br>" + str(execute_shenzhen_1(60))+ "<br></br>"
-time.sleep(60)
-content600 = "===========================上海01天：<br></br>" + str(execute_shanghai_1(1))+ "<br></br>"
-content60 = "===========================上海02天：<br></br>" + str(execute_shanghai_1(2))+ "<br></br>"
-content6 = "===========================上海05天：<br></br>" + str(execute_shanghai_1(5))+ "<br></br>"
-time.sleep(60)
-content7 = "===========================上海10天：<br></br>" + str(execute_shanghai_1(10))+ "<br></br>"
-time.sleep(60)
-content8 = "===========================上海20天：<br></br>" + str(execute_shanghai_1(20))+ "<br></br>"
-time.sleep(60)
-content9 = "===========================上海30天：<br></br>" + str(execute_shanghai_1(30))+ "<br></br>"
-time.sleep(60)
-content10 = "===========================上海60天：<br></br>" + str(execute_shanghai_1(60))+ "<br></br>"
+# time.sleep(60)
+# content600 = "===========================上海01天：<br></br>" + str(execute_shanghai_1(1))+ "<br></br>"
+# content60 = "===========================上海02天：<br></br>" + str(execute_shanghai_1(2))+ "<br></br>"
+# content6 = "===========================上海05天：<br></br>" + str(execute_shanghai_1(5))+ "<br></br>"
+# time.sleep(60)
+# content7 = "===========================上海10天：<br></br>" + str(execute_shanghai_1(10))+ "<br></br>"
+# time.sleep(60)
+# content8 = "===========================上海20天：<br></br>" + str(execute_shanghai_1(20))+ "<br></br>"
+# time.sleep(60)
+# content9 = "===========================上海30天：<br></br>" + str(execute_shanghai_1(30))+ "<br></br>"
+# time.sleep(60)
+# content10 = "===========================上海60天：<br></br>" + str(execute_shanghai_1(60))+ "<br></br>"
 
 print("===========================05天：")
-content =  content00 + content0 + content1 + content2 + content3 + content4 + content5 + content600 + content60 + content6 + content7 + content8 + content9 + content10
-print(content)
+content =  content00 + content0 + content1 + content2 + content3 + content5
 sendMailWiz(template1(content), "A股TOP买入")
