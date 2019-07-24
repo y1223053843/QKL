@@ -95,4 +95,5 @@ content10 = "===========================上海60天：<br></br>" + str(execute_s
 
 print("===========================05天：")
 content =  content00 + content0 + content1 + content2 + content3 + content4 + content5 + content600 + content60 + content6 + content7 + content8 + content9 + content10
+print(content)
 sendMailWiz(template1(content), "A股TOP买入")
