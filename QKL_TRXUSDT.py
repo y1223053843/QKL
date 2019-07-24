@@ -336,4 +336,4 @@ def strategy(name,zhouqi):
                      name_jian + "%.5f" % closeArray[-1] + strQuShi + strRSI + strMA)
 
 time.sleep(60)
-strategy("TRX/USDT","1h")
+strategy("EOS/USDT","1h")
