@@ -95,6 +95,6 @@ content5 = "===========================深圳60天：<br></br>" + str(execute_sh
 # time.sleep(60)
 # content10 = "===========================上海60天：<br></br>" + str(execute_shanghai_1(60))+ "<br></br>"
 
-print("===========================05天：")
 content =  content00 + content0 + content1 + content2 + content3 + content5
+print(content)
 sendMailWiz(template1(content), "A股TOP买入")
