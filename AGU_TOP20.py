@@ -68,6 +68,10 @@ def execute_shanghai_1(days):
 # time.sleep(60)
 # print(execute_shenzhen_1(60))
 
+print("===========================01天：")
+content00 = "===========================深圳01天：<br></br>" + str(execute_shenzhen_1(1)) + "<br></br>"
+print("===========================02天：")
+content0 = "===========================深圳02天：<br></br>" + str(execute_shenzhen_1(2)) + "<br></br>"
 print("===========================05天：")
 content1 = "===========================深圳05天：<br></br>" + str(execute_shenzhen_1(5)) + "<br></br>"
 print("===========================10天：")
@@ -91,5 +95,6 @@ content5 = "===========================深圳60天：<br></br>" + str(execute_sh
 # time.sleep(60)
 # content10 = "===========================上海60天：<br></br>" + str(execute_shanghai_1(60))+ "<br></br>"
 
-content = content1 + content2 + content3 + content5
+print("===========================05天：")
+content =  content00 + content0 + content1 + content2 + content3 + content5
 sendMailWiz(template1(content), "A股TOP买入")
