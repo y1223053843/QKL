@@ -195,9 +195,13 @@ def strategy(name,zhouqi):
     # print(SMA30_15_24)
     str15QuShi = ""
     if (SMA30_15_6[-1] > SMA30_15_6[-2] and SMA30_15_12[-1] > SMA30_15_12[-2] and SMA30_15_24[-1] > SMA30_15_24[-2]):
-        str15QuShi = "均线1小时坚定买入"
+        str15QuShi = "均线1小时坚定买入1"
+        if (SMA30_15_6[-2] > SMA30_15_6[-3] and SMA30_15_12[-2] > SMA30_15_12[-3] and SMA30_15_24[-2] > SMA30_15_24[-3]):
+            str15QuShi = "均线1小时坚定买入2"
     elif (SMA30_15_6[-1] < SMA30_15_6[-2] and SMA30_15_12[-1] < SMA30_15_12[-2] and SMA30_15_24[-1] < SMA30_15_24[-2]):
-        str15QuShi = "均线1小时坚定卖出"
+        str15QuShi = "均线1小时坚定卖出1"
+        if (SMA30_15_6[-2] < SMA30_15_6[-3] and SMA30_15_12[-2] < SMA30_15_12[-3] and SMA30_15_24[-2] < SMA30_15_24[-3]):
+            str15QuShi = "均线1小时坚定卖出2"
     else:
         str15QuShi = "均线1小时坚定空仓"
 
