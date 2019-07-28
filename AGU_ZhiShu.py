@@ -6,20 +6,8 @@ import tushare as ts
 import talib as ta
 from email_util import *
 
-a = 0
-
-def strategy(code, name, zhouqi):
-
-     if (zhouqi == '30'):
-          zhouqi_ch = "30分"
-     if (zhouqi == '60'):
-          zhouqi_ch = "1h"
-     if (zhouqi == 'D'):
-          zhouqi_ch = "1天"
-     if (zhouqi == 'W'):
-          zhouqi_ch = "1周"
-
-     data_history = ts.get_k_data(code, ktype = zhouqi)
+def strategy(code, name):
+     data_history = ts.get_k_data(code, ktype = "15")
 
      # 02、 数据格式处理、并计算布林线值
      closeArray = num.array(data_history['close'])
@@ -30,40 +18,20 @@ def strategy(code, name, zhouqi):
      doubleHighArray = num.asarray(highArray,dtype='double')
      doubleLowArray = num.asarray(lowArray,dtype='double')
 
-     upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
+     SMA30_15_4 = ta.SMA(doubleCloseArray, timeperiod=4)
+     SMA30_15_8 = ta.SMA(doubleCloseArray, timeperiod=8)
+     SMA30_15_20 = ta.SMA(doubleCloseArray, timeperiod=20)
+     SMA30_15_28 = ta.SMA(doubleCloseArray, timeperiod=28)
 
-     fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray, dtype='double'), timeperiod=14, fastk_period=14, fastd_period=3, fastd_matype=3)
-     print(fastd)
+     if (SMA30_15_4[-1] > SMA30_15_4[-2] and SMA30_15_8[-1] > SMA30_15_8[-2] and SMA30_15_20[-1] > SMA30_15_20[-2] and SMA30_15_28[-1] > SMA30_15_28[-2]):
+          str15QuShi = "均线15坚定买入"
+     elif (SMA30_15_4[-1] < SMA30_15_4[-2] and SMA30_15_8[-1] < SMA30_15_8[-2] and SMA30_15_20[-1] < SMA30_15_20[-2] and SMA30_15_28[-1] < SMA30_15_28[-2]):
+          str15QuShi = "均线15坚定卖出"
+     else:
+          str15QuShi = "均线15坚定空仓"
 
      print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
-     print(zhouqi_ch + "LOWER===============" + str(lowArray[-1]))
-     print(zhouqi_ch + "HIGHER==============" + str(highArray[-1]))
-     print(zhouqi_ch + "CLOSE===============" + str(closeArray[-1]))
-     print(zhouqi_ch + "BULL upperband======" +  str(upperband[-1]))
-     print(zhouqi_ch + "BULL middleband=====" +  str(middleband[-1]))
-     print(zhouqi_ch + "BULL lowerband======" +  str(lowerband[-1]))
-     print(zhouqi_ch + "RSI_1h =============" + "%.2f" % fastd[-5] + "_" + "%.2f" % fastd[-4] + "_" + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
 
-     if (zhouqi == '60'):
-          if (fastd[-1] < 40):
-               sendMail(name + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "底:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
-          if (fastd[-1] > 60):
-               sendMail(name + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1],
-                        name + "触" + zhouqi_ch + "顶:" + str(closeArray[-1]) + " " + "%.2f" % fastd[-3] + "_" + "%.2f" % fastd[-2] + "_" + "%.2f" % fastd[-1])
+     sendMail(name + str15QuShi, name + str15QuShi)
 
-     #
-     # global a
-     # if (a == 1):
-     #      return
-     #
-     # if ((lowArray[-1] - lowerband[-1])/lowArray[-1] <= 0.01 ):
-     #      a = 1
-     #      sendMail(name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线下沿,当前价格：" + str(closeArray[-1]))
-     # if (highArray[-1] >= upperband[-1]):
-     #      a = 1
-     #      sendMail(name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]), name + "触发" + zhouqi_ch + "布林线上沿,当前价格：" + str(closeArray[-1]))
-
-
-strategy("399006", "创业板指", "60")
-# strategy("399006", "创业板指", "D")
+strategy("399006", "创业板指")
