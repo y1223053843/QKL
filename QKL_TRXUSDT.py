@@ -190,9 +190,9 @@ def strategy(name,zhouqi):
             if ((SMA30_15[-3] < SMA30_15[-4])):
                 str15 = "降3 "
 
-    print(SMA30_15_6)
-    print(SMA30_15_12)
-    print(SMA30_15_24)
+    # print(SMA30_15_6)
+    # print(SMA30_15_12)
+    # print(SMA30_15_24)
     str15QuShi = ""
     if (SMA30_15_6[-1] > SMA30_15_6[-2] and SMA30_15_12[-1] > SMA30_15_12[-2] and SMA30_15_24[-1] > SMA30_15_24[-2]):
         str15QuShi = "均线15坚定买入"
