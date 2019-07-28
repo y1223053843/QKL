@@ -169,10 +169,10 @@ def strategy(name,zhouqi):
 
 
     ############################################ 15分钟均线趋势#############################################
-    SMA30_15 = ta.SMA(doubleCloseArray_15, timeperiod=30)
-    SMA30_15_6 = ta.SMA(doubleCloseArray_15, timeperiod=6)
-    SMA30_15_12 = ta.SMA(doubleCloseArray_15, timeperiod=12)
-    SMA30_15_24 = ta.SMA(doubleCloseArray_15, timeperiod=24)
+    SMA30_15 = ta.SMA(doubleCloseArray, timeperiod=30)
+    SMA30_15_6 = ta.SMA(doubleCloseArray, timeperiod=6)
+    SMA30_15_12 = ta.SMA(doubleCloseArray, timeperiod=12)
+    SMA30_15_24 = ta.SMA(doubleCloseArray, timeperiod=24)
     #print("#####################################################################################15")
     #print(SMA30_15)
     str15 = ""
@@ -195,11 +195,11 @@ def strategy(name,zhouqi):
     # print(SMA30_15_24)
     str15QuShi = ""
     if (SMA30_15_6[-1] > SMA30_15_6[-2] and SMA30_15_12[-1] > SMA30_15_12[-2] and SMA30_15_24[-1] > SMA30_15_24[-2]):
-        str15QuShi = "均线15坚定买入"
+        str15QuShi = "均线1小时坚定买入"
     elif (SMA30_15_6[-1] < SMA30_15_6[-2] and SMA30_15_12[-1] < SMA30_15_12[-2] and SMA30_15_24[-1] < SMA30_15_24[-2]):
-        str15QuShi = "均线15坚定卖出"
+        str15QuShi = "均线1小时坚定卖出"
     else:
-        str15QuShi = "均线15坚定空仓"
+        str15QuShi = "均线1小时坚定空仓"
 
 
 
