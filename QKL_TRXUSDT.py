@@ -41,9 +41,9 @@ def strategy(name,zhouqi):
         time.sleep(2)
 
         # ##############获取6小时数据#############################################################################
-        # since_time_6h = current_time - limit * 6 * 60 * 60 * 1000
-        # data_6h = gateio.fetch_ohlcv(symbol=name, timeframe='6h', limit=500, since=since_time_6h)
-        # time.sleep(2)
+        since_time_6h = current_time - limit * 6 * 60 * 60 * 1000
+        data_6h = gateio.fetch_ohlcv(symbol=name, timeframe='6h', limit=500, since=since_time_6h)
+        time.sleep(2)
 
         ##############获取12小时数据#############################################################################
         since_time_12h = current_time - limit * 12 * 60 * 60 * 1000
@@ -110,11 +110,11 @@ def strategy(name,zhouqi):
     doubleOpenArray = num.asarray(openArray, dtype='double')
 
     ############################################ 15分钟数据处理############################################
-    # df_6h = pd.DataFrame(data_6h)
-    # df_6h = df_6h.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
-    # df_6h['open_time'] = pd.to_datetime(df_6h['open_time'], unit='ms') + pd.Timedelta(hours=8)
-    # closeArray_6h = num.array(df_6h['close'])
-    # doubleCloseArray_6h = num.asarray(closeArray_6h, dtype='double')
+    df_6h = pd.DataFrame(data_6h)
+    df_6h = df_6h.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
+    df_6h['open_time'] = pd.to_datetime(df_6h['open_time'], unit='ms') + pd.Timedelta(hours=8)
+    closeArray_6h = num.array(df_6h['close'])
+    doubleCloseArray_6h = num.asarray(closeArray_6h, dtype='double')
 
     ############################################ 15分钟数据处理############################################
     df_12h = pd.DataFrame(data_12h)
@@ -297,7 +297,7 @@ def strategy(name,zhouqi):
     #                                  fastd_period=3, fastd_matype=3)
     #
     ############################################ 01小时STOCHRSI#############################################
-    fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray_12h, dtype='double'), timeperiod=14, fastk_period=14,
+    fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray_6h, dtype='double'), timeperiod=14, fastk_period=14,
                                fastd_period=3, fastd_matype=3)
     #print(fastd)
     #
@@ -378,7 +378,7 @@ def strategy(name,zhouqi):
     #         sendMail(name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA,
     #                  name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA)
     if (zhouqi == '1h'):
-            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI12小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1],
-                     name_jian + "%.3f" % closeArray[-1] + " RSI12小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1])
+            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI6小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1],
+                     name_jian + "%.3f" % closeArray[-1] + " RSI6小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1])
 
 strategy("EOS/USDT","1h")
