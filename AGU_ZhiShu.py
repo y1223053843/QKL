@@ -32,6 +32,6 @@ def strategy(code, name):
 
      print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
 
-     sendMail(name + str15QuShi, name + str15QuShi)
+     sendMail(name + + "%.1f" % closeArray[-1]  + "_" + str15QuShi, name + + "%.1f" % closeArray[-1]  + "_" + str15QuShi)
 
 strategy("399006", "创业板指")
