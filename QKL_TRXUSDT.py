@@ -66,9 +66,9 @@ def strategy(name,zhouqi):
         # time.sleep(2)
 
         ##############获取04小时数据#############################################################################
-        # since_time_4h = current_time - limit * 4 * 60 * 60 * 1000
-        # data_4h = gateio.fetch_ohlcv(symbol=name, timeframe='4h', limit=500, since=since_time_4h)
-        # time.sleep(2)
+        since_time_4h = current_time - limit * 4 * 60 * 60 * 1000
+        data_4h = gateio.fetch_ohlcv(symbol=name, timeframe='4h', limit=500, since=since_time_4h)
+        time.sleep(2)
 
         zhouqi_ch = "1h"
 
@@ -145,11 +145,11 @@ def strategy(name,zhouqi):
     # doubleCloseArray_30 = num.asarray(closeArray_30, dtype='double')
 
     ############################################ 04小时数据处理############################################
-    # data_4h = pd.DataFrame(data_4h)
-    # data_4h = data_4h.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
-    # data_4h['open_time'] = pd.to_datetime(data_4h['open_time'], unit='ms') + pd.Timedelta(hours=8)
-    # closeArray_4h = num.array(data_4h['close'])
-    # doubleCloseArray_4h = num.asarray(closeArray_4h, dtype='double')
+    data_4h = pd.DataFrame(data_4h)
+    data_4h = data_4h.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
+    data_4h['open_time'] = pd.to_datetime(data_4h['open_time'], unit='ms') + pd.Timedelta(hours=8)
+    loseArray_4h = num.array(data_4h['close'])
+    doubleCloseArray_4h = num.asarray(closeArray_4h, dtype='double')
 
 
 
@@ -297,7 +297,7 @@ def strategy(name,zhouqi):
     #                                  fastd_period=3, fastd_matype=3)
     #
     ############################################ 01小时STOCHRSI#############################################
-    fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray_6h, dtype='double'), timeperiod=14, fastk_period=14,
+    fastk, fastd = ta.STOCHRSI(num.asarray(doubleCloseArray_4h, dtype='double'), timeperiod=14, fastk_period=14,
                                fastd_period=3, fastd_matype=3)
     #print(fastd)
     #
@@ -320,10 +320,10 @@ def strategy(name,zhouqi):
     # strMA = " M15:" + "%.1f" % (macdsignal[-3]*100) + "/" + "%.1f" % (macdsignal[-2]*100) + "/" + "%.1f" % (macdsignal[-1]*100)
     #
     ############################################ 1小时布林线    ###############################################
-    # upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray_6h*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
-    # upperband = upperband / 1000
-    # middleband = middleband / 1000
-    # lowerband = lowerband / 1000
+    upperband, middleband, lowerband = ta.BBANDS(doubleCloseArray_4h*1000, timeperiod=20, nbdevup=2, nbdevdn=2, matype=0)
+    upperband = upperband / 1000
+    middleband = middleband / 1000
+    lowerband = lowerband / 1000
 
     #print(lowerband)
 
@@ -378,7 +378,7 @@ def strategy(name,zhouqi):
     #         sendMail(name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA,
     #                  name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA)
     if (zhouqi == '1h'):
-            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI6小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1],
-                     name_jian + "%.3f" % closeArray[-1] + " RSI6小时:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1])
+            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + "BULL4H:" + "%.1f" % upperband[-1] + "_" + "%.1f" % middleband[-1] + "_" + "%.1f" % lowerband[-1],
+                     name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + "BULL4H:" + "%.1f" % upperband[-1] + "_" + "%.1f" % middleband[-1] + "_" + "%.1f" % lowerband[-1])
 
 strategy("EOS/USDT","1h")
