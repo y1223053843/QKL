@@ -378,7 +378,7 @@ def strategy(name,zhouqi):
     #         sendMail(name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA,
     #                  name_jian + "%.3f" % closeArray[-1] + strQuShi + strRSI + strMA)
     if (zhouqi == '1h'):
-            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " BULL4H:" + "%.3f" % upperband[-1] + "_" + "%.3f" % middleband[-1] + "_" + "%.3f" % lowerband[-1],
-                     name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " BULL4H:" + "%.3f" % upperband[-1] + "_" + "%.3f" % middleband[-1] + "_" + "%.3f" % lowerband[-1])
+            sendMail(name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " BULL4H:" + "%.2f" % upperband[-1] + "_" + "%.2f" % middleband[-1] + "_" + "%.2f" % lowerband[-1],
+                     name_jian + "%.3f" % closeArray[-1] + " RSI4H:" + "%.1f" % fastd[-3] + "_" + "%.1f" % fastd[-2] + "_" + "%.1f" % fastd[-1] + " BULL4H:" + "%.2f" % upperband[-1] + "_" + "%.2f" % middleband[-1] + "_" + "%.2f" % lowerband[-1])
 
 strategy("EOS/USDT","1h")
