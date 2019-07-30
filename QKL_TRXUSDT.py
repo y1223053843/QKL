@@ -148,7 +148,7 @@ def strategy(name,zhouqi):
     data_4h = pd.DataFrame(data_4h)
     data_4h = data_4h.rename(columns={0: 'open_time', 1: 'open', 2: 'high', 3: 'low', 4: 'close', 5: 'volume'})
     data_4h['open_time'] = pd.to_datetime(data_4h['open_time'], unit='ms') + pd.Timedelta(hours=8)
-    loseArray_4h = num.array(data_4h['close'])
+    closeArray_4h = num.array(data_4h['close'])
     doubleCloseArray_4h = num.asarray(closeArray_4h, dtype='double')
 
 
