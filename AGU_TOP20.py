@@ -92,4 +92,4 @@ content5 = "===========================深圳60天：<br></br>" + str(execute_sh
 # content10 = "===========================上海60天：<br></br>" + str(execute_shanghai_1(60))+ "<br></br>"
 
 content = content1 + content2 + content3 + content5
-sendMailWiz(template1(content), "A股TOP买入")
+sendMail(template1(content), "A股TOP")
