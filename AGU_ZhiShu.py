@@ -24,14 +24,21 @@ def strategy(code, name):
      SMA30_15_28 = ta.SMA(doubleCloseArray, timeperiod=28)
 
      if (SMA30_15_4[-1] > SMA30_15_4[-2] and SMA30_15_8[-1] > SMA30_15_8[-2] and SMA30_15_20[-1] > SMA30_15_20[-2] and SMA30_15_28[-1] > SMA30_15_28[-2]):
-          str15QuShi = "均线15坚定买入"
+          str15QuShi = "买 "
      elif (SMA30_15_4[-1] < SMA30_15_4[-2] and SMA30_15_8[-1] < SMA30_15_8[-2] and SMA30_15_20[-1] < SMA30_15_20[-2] and SMA30_15_28[-1] < SMA30_15_28[-2]):
-          str15QuShi = "均线15坚定卖出"
+          str15QuShi = "卖 "
      else:
-          str15QuShi = "均线15坚定空仓"
+          str15QuShi = "空 "
 
      print(name + time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+     #sendMail(name + "%.1f" % closeArray[-1]  + "_" + str15QuShi, name + "%.1f" % closeArray[-1]  + "_" + str15QuShi)
+     return name + str15QuShi
 
-     sendMail(name + "%.1f" % closeArray[-1]  + "_" + str15QuShi, name + "%.1f" % closeArray[-1]  + "_" + str15QuShi)
+str0 = strategy("399006", " 创业")
+str1 = strategy("002281", " 光迅")
+str2 = strategy("000625", " 长安")
+str3 = strategy("300136", " 信维")
 
-strategy("399006", "创业板指")
+content = str0 + str1 + str2 + str3
+title = str0 + str1 + str2 + str3
+sendMail (content, title)
